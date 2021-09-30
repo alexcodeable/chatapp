@@ -10,6 +10,7 @@ import "channels"
 
 import '@doabit/semantic-ui-sass'
 
+
 require("./main")
 
 Rails.start()

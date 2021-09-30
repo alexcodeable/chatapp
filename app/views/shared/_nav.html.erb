@@ -2,22 +2,36 @@
 
 <div class="ui inverted small menu">
 <div class="ui container">
-  <a href='/' class="item">
+<% if user_signed_in? %>
+  <a href='/chatroom' class="item">
+  <h2>
+  <i class="universal access red icon"></i>
+</h2>
     ChatApp
   </a>
-  <a class="item">
-    Messages
+  <% else %>
+  <a href='/' class="item">
+  <h2>
+  <i class="universal access red icon"></i>
+</h2>
+    ChatApp
   </a>
+  <% end %>
   <div class="right menu">
     <div class="ui dropdown item"><i class="user circle outline icon"></i>
-      Account <i class="dropdown icon"></i>
+    <%= current_user.username if user_signed_in? %>
+      <% if !user_signed_in? %>Account <% end %> <i class="dropdown icon"></i>
       <div class="menu">
-        <a class="item">Sign In</a>
-        <a class="item">Sign Up</a>
+      <% if user_signed_in? %>
+        <a href='/sign_out' class="item">Sign Out</a>
+        <a href='/profile/edit' class="item">Settings</a>
+        
+        <% else %>
+        
+        <a href='/sign_in' class="item">Sign In</a>
+        <a href='/sign_up' class="item">Sign Up</a>
+        <% end %>
       </div>
-    </div>
-    <div class="item">
-        <div class="ui red button"><i class="power off icon"></i> Sign Out</div>
     </div>
   </div>
   </div>
