@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        ActionCable.server.broadcast "chatroom_channel", foo: @message.content
+        ActionCable.server.broadcast "chatroom_channel", {foo: @message.content}
         # format.html { redirect_to chatroom_path, notice: "Message was successfully created." }
         # format.json { render :show, status: :created, location: @message }
       else
