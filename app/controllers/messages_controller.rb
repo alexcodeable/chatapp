@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
-    @messages = Message.all
+    @messages = Message.custom_results
     @user = User.all
   end
 
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
 
     respond_to do |format|
       if @message.save
-        ActionCable.server.broadcast "chatroom_channel", {foo: @message.content}
+        ActionCable.server.broadcast("chatroom_channel", {messge: message_rend(@message)})
         # format.html { redirect_to chatroom_path, notice: "Message was successfully created." }
         # format.json { render :show, status: :created, location: @message }
       else
@@ -68,5 +68,9 @@ class MessagesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def message_params
       params.require(:message).permit(:content)
+    end
+
+    def message_rend(message)
+      render(partial: 'message', locals: {message: message})
     end
 end
