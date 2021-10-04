@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
       chatroom_path
     end
 
+    def after_update_path_for(resource_or_scope)
+      chatroom_path
+    end
+
     protected
     
     def configure_permitted_parameters
