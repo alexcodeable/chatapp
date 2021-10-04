@@ -34,12 +34,18 @@
               <i class="lock icon"></i>
             </div>
           </div>
+          
           <div class="field">
             <label>Password Confirmation</label>
             <div class="ui left icon input">
               <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
               <i class="lock icon"></i>
             </div>
+          </div>
+
+          <div class="field">
+            <%= f.label :avatar, "Profile image" %><br />
+            <%= f.file_field :avatar %>
           </div>
           <%= f.submit "Sign Up", class: "ui  submit fluid red button" %> <br>
         </div>
